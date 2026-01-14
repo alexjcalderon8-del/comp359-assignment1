@@ -19,16 +19,56 @@ class MergeSortPrealloc:
         temp = [0] * len(arr)  
         #preallocate memory for temporary array
     
-        self.mergesort(arr, 0, len(arr) - 1, temp)
+        self._mergesort(arr, 0, len(arr) - 1, temp)
         # call mergesort on the entire array, making it recursive
-    
-    
-    def _mergesort(self, arr: List[int], left: int, right: int, temp: List[int]) -> None:
-        #method to do mergesort recursively
+     
+    def _mergesort(self, arr: List[int], left: int, right: int, temp: List[int]) -> None:        #method to do mergesort recursively
+        if left < right:
+            
+            mid = (left + right) // 2
+            
+            #recursively sorting left and right halves
+            self._mergesort(arr, left, mid, temp)
+            self._mergesort(arr, mid + 1, right, temp)
+            
+            #merging the sorted halves
+            self._merge(arr, left, mid, right, temp)
         pass
+        
     
     def _merge(self, arr: List[int], left: int, mid: int, right: int, temp: List[int]) -> None:
         #method to merge two sorted halves
+        
+        #pointers for left and right halves
+        i = left      
+        j = mid + 1   
+        k = 0         
+    
+    #merging elements
+        while i <= mid and j <= right:
+            if arr[i] <= arr[j]:
+                temp[k] = arr[i]
+                i += 1
+            else:
+                temp[k] = arr[j]
+                j += 1
+            k += 1
+    
+    
+        while i <= mid:
+            temp[k] = arr[i]
+            i += 1
+            k += 1
+    
+  
+        while j <= right:
+            temp[k] = arr[j]
+            j += 1
+            k += 1
+    
+    #copying merged elements to original array
+        for idx in range(k):
+            arr[left + idx] = temp[idx]
         pass
     
     
