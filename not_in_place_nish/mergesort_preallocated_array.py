@@ -9,19 +9,35 @@ from typing import List
 
 class MergeSortPrealloc:
     
-    def sort (): 
+    def sort (self, arr: List[int]) -> List[int]: 
         #method to sort an array
-        return 
+        if len(arr) <= 1:
+            return arr
+        #if the array is of length 1 or less, it is already sorted
+        
+        
+        temp = [0] * len(arr)  
+        #preallocate memory for temporary array
     
-    def mergesort():
+        self.mergesort(arr, 0, len(arr) - 1, temp)
+        # call mergesort on the entire array, making it recursive
+    
+    
+    def _mergesort(self, arr: List[int], left: int, right: int, temp: List[int]) -> None:
         #method to do mergesort recursively
         pass
     
-    def merge():
+    def _merge(self, arr: List[int], left: int, mid: int, right: int, temp: List[int]) -> None:
         #method to merge two sorted halves
         pass
     
-    def test():
-        #method to test the implementation or the basic setup
-        pass
     
+def test():
+    #method to test the implementation or the basic setup        
+    sorter = MergeSortPrealloc()
+    test_arr = [5, 2, 8, 1, 9, 3] #giving a sample array
+    print(f"Original array: {test_arr}")    
+    print(f"Sorter class initialized: {sorter}")
+        
+  
+test()
