@@ -20,16 +20,35 @@ Implement different merge function for Mergesort and compare the difference betw
 
 ## Tools used  
 
+- python
+ 
+### Libraries
+
+- time (built-in python library)
 
 ---
 
 ## How it works  
 
+### Not-in-place merge
+
+### In-place merge
+
+The main component behind using the In-place merge is completing the mergesort all within the same array. This means that there is so extra memory dedicated to an empty array.
+All of the sorting is done in the original array. This can bring a challenge as there is no additional space to work with, the algortihm must meet the requirement of working in the initial array
+This can be useful if systems have some kind of memory limit or if the requirement calls for a lower utilization percentage of memory. To understand how the example of the In-place merge works, it is important to note that there a different variations such as rotation-based, block-swap, and shifting for in-place merge.
+
+The shifting merge, will take an array of numbers  and begin the process with spliting the array in halves. This is fundamental to a merge sorting algortihm. Making comparisons recursively will split the array based in whether the value indicated at
+point1 is less than or greater than the value indicated at point2. if the value is less than, this means that the two values are in-order and point1 will move to the next index and make another comparison. In the case
+that point2 is less than the value held at the index of point1, a shift will occur and the value of point two will then be placed where the index of point1 was. This will cause all the values beyond the index of point1 to shift one spot towards the next index.
+
+Once there are two fully sorted halves, the final iteration of the sort will occur and the final merge will happen between the two sub-arrays.
 
 ---
 
 ## Instructions to run  
 
+Run each program in an IDE, the results will be provided within the terminal as standard output. The output will provide information on the results of the program and the timing
 
 ---
 
