@@ -11,9 +11,9 @@ import time
 
 
 
-arr = [5, 2, 8, 1, 9, 3,] # defining the array with 6 values
+arr = [5, 2, 8, 1, 9, 3,] # defining the array with 6 values for testing
 
-def merge_combine(arr, point1, mid, end):
+def merge_comp(arr, point1, mid, end):
     point2 = mid + 1
     if (arr[mid] <= arr[point2]):
         return
@@ -38,15 +38,19 @@ def merge_combine(arr, point1, mid, end):
 def merge_sort(arr, start, end):
     if start >= end:
         return
-    mid = (start + end ) // 2 # defining the mid point by taking the length of the array and dividing by 2
+    mid = (start + end ) // 2 # defining the mid point by taking the index of the values in the array and dividing by 2
    
     merge_sort(arr, start, mid) 
     merge_sort(arr, mid + 1, end)
-    merge_combine(arr, start, mid, end)
+    merge_comp(arr, start, mid, end) # after we have two sorted halves, the final interation will occur
 
 
 
-
-
+# implementing the timer for the function in nanoseconds
+start_timer = time.perf_counter_ns()
 merge_sort(arr, 0, len(arr) - 1) # using the merge function on the full length of indexes in the starting array. The array start point will always start at the start of the array 0, and the end will alwaysbe and the end of the array with len(arr) - 1
+end_timer = time.perf_counter_ns()
+total_time = (end_timer - start_timer)
+
 print(f"in-place mergesorted list : {arr}") # printing the results of the in-place merge, hopefully a sorted list.
+print(f"time for code: {total_time} nanoseconds")
