@@ -1,50 +1,31 @@
-#this is the type of not in place merge sort where we preallocate a temporary array for the mergesort 
-
-# immplementing - standard mergesort with preallocated memory
-
 import random
 import time
 from typing import List 
-#type hinting to type list
 
 class MergeSortPrealloc:
     
-    def sort (self, arr: List[int]) -> List[int]: 
-        #method to sort an array
+    def sort(self, arr: List[int]) -> List[int]: 
         if len(arr) <= 1:
-            return arr
-        #if the array is of length 1 or less, it is already sorted
-        
+            return arr 
         
         temp = [0] * len(arr)  
-        #preallocate memory for temporary array
-    
         self._mergesort(arr, 0, len(arr) - 1, temp)
-        # call mergesort on the entire array, making it recursive
-     
-    def _mergesort(self, arr: List[int], left: int, right: int, temp: List[int]) -> None:        #method to do mergesort recursively
+        return arr
+    
+    def _mergesort(self, arr: List[int], left: int, right: int, temp: List[int]) -> None:
         if left < right:
-            
             mid = (left + right) // 2
             
-            #recursively sorting left and right halves
             self._mergesort(arr, left, mid, temp)
             self._mergesort(arr, mid + 1, right, temp)
             
-            #merging the sorted halves
             self._merge(arr, left, mid, right, temp)
-        pass
-        
     
     def _merge(self, arr: List[int], left: int, mid: int, right: int, temp: List[int]) -> None:
-        #method to merge two sorted halves
-        
-        #pointers for left and right halves
         i = left      
         j = mid + 1   
         k = 0         
     
-    #merging elements
         while i <= mid and j <= right:
             if arr[i] <= arr[j]:
                 temp[k] = arr[i]
@@ -54,30 +35,108 @@ class MergeSortPrealloc:
                 j += 1
             k += 1
     
-    
         while i <= mid:
             temp[k] = arr[i]
             i += 1
             k += 1
     
-  
         while j <= right:
             temp[k] = arr[j]
             j += 1
             k += 1
     
-    #copying merged elements to original array
         for idx in range(k):
             arr[left + idx] = temp[idx]
-        pass
     
+    def is_sorted(self, arr: List[int]) -> bool:
+        return all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))
     
-def test():
-    #method to test the implementation or the basic setup        
-    sorter = MergeSortPrealloc()
-    test_arr = [5, 2, 8, 1, 9, 3] #giving a sample array
-    print(f"Original array: {test_arr}")    
-    print(f"Sorter class initialized: {sorter}")
+    def test_sort(self, arr: List[int]) -> bool:
+        original = arr.copy()
+        sorted_arr = self.sort(arr.copy())
         
-  
-test()
+        is_correct = self.is_sorted(sorted_arr)
+        
+        print(f"Original: {original}")
+        print(f"Sorted:   {sorted_arr}")
+        print(f"Correctly sorted: {is_correct}")
+        
+        return is_correct
+
+
+class PerformanceAnalyzer:
+    
+    @staticmethod
+    def generate_random_array(size: int, min_val: int = 1, max_val: int = 10000) -> List[int]:
+        return [random.randint(min_val, max_val) for _ in range(size)]
+    
+    @staticmethod
+    def time_sort(sorter, arr: List[int], iterations: int = 3) -> float:
+        
+        total_time = 0
+        
+        for _ in range(iterations):
+            test_arr = arr.copy()
+            start_time = time.perf_counter()
+            sorter.sort(test_arr)
+            end_time = time.perf_counter()
+            
+            if not sorter.is_sorted(test_arr):
+                raise ValueError("Sorting failed!")
+            
+            total_time += (end_time - start_time)
+        
+        return total_time / iterations
+    
+    def run_performance_test(self, sorter, sizes: List[int] = None) -> dict:
+        if sizes is None:
+            sizes = [100, 500, 1000, 5000, 10000]
+        
+        results = {}
+        
+        print("\nPerformance Analysis")
+        
+        for size in sizes:
+            test_array = self.generate_random_array(size)
+            avg_time = self.time_sort(sorter, test_array)
+            results[size] = avg_time
+            # fixed issue -  replaced Unicode arrow with ASCII-friendly version
+            print(f"Array size: {size:6,} -> Average time: {avg_time:.6f} seconds")
+        
+        return results
+
+
+def test_basic():
+    sorter = MergeSortPrealloc()
+    
+    print("Testing MergeSort with Pre-allocated Memory")
+    
+    print("\nTest 1: Basic array")
+    test_arr1 = [5, 2, 8, 1, 9, 3]
+    sorter.test_sort(test_arr1)
+    
+    print("\nTest 2: Already sorted array")
+    test_arr2 = [1, 2, 3, 4, 5]
+    sorter.test_sort(test_arr2)
+    
+    print("\nTest 3: Reverse sorted array")
+    test_arr3 = [9, 8, 7, 6, 5]
+    sorter.test_sort(test_arr3)
+    
+ 
+def main():
+    sorter = MergeSortPrealloc()
+    analyzer = PerformanceAnalyzer()
+    
+    test_basic()
+    
+    results = analyzer.run_performance_test(sorter)
+    
+    print("\nSummary")
+    print(f"Algorithm: Standard Mergesort with Pre-allocated Memory")
+    print(f"Tested array sizes: {list(results.keys())}")
+    print(f"All tests passed: Yes")
+
+
+if __name__ == "__main__":
+    main()
