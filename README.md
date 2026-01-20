@@ -42,7 +42,7 @@ The shifting merge, will take an array of numbers  and begin the process with sp
 point1 is less than or greater than the value indicated at point2. if the value is less than, this means that the two values are in-order and point1 will move to the next index and make another comparison. In the case
 that point2 is less than the value held at the index of point1, a shift will occur and the value of point two will then be placed where the index of point1 was. This will cause all the values beyond the index of point1 to shift one spot towards the next index.
 
-Once there are two fully sorted halves, the final iteration of the sort will occur and the final merge will happen between the two sub-arrays.
+Once there are two fully sorted halves, the final iteration of the sort comparison will occur and the final merge will happen between the two sub-arrays.
 
 ---
 
@@ -52,12 +52,12 @@ Run each program in an IDE, the results will be provided within the terminal as 
 
 ---
 
-## Limitations  
-
----
-
 ## Supporting Documentation  
 
+located in docs/
+
+- shift_merge.png
+- inplace_analysis.md
 
 ---
 
@@ -70,5 +70,9 @@ Run each program in an IDE, the results will be provided within the terminal as 
 ## References  
 
 GeeksforGeeks. (2025, October 3). Merge sort. [https://www.geeksforgeeks.org/dsa/merge-sort/](https://www.geeksforgeeks.org/dsa/merge-sort/) 
+
+Panday, A. (2024, May 11). Understanding time complexity: And why is it essential to learn? | by Ankush Panday | medium. Medium. [https://medium.com/@ankushpanday/understanding-time-complexity-and-why-is-it-essential-to-learn-f409c25bf256](https://medium.com/@ankushpanday/understanding-time-complexity-and-why-is-it-essential-to-learn-f409c25bf256)
+
+Sryheni, S. (2024, March 18). In-place sorting with merge sort | Baeldung on computer science. Baeldung. [https://www.baeldung.com/cs/merge-sort-in-place](https://www.baeldung.com/cs/merge-sort-in-place)
 
 ---
