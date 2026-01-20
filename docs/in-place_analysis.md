@@ -17,7 +17,7 @@ Sort the array utilizing an in-place merge method.
 for time complexity we must consider the functions of the merge and the comparisons we make. As part of the merge process we will recursively break down the array in to two subarrays, then continue to split the array
 if the left halves are greater than the right halves. For the comparison portion we take the subarrays in their simpilest form and use pointers to ensure that the left value is less than the right value.(log(n)) In the case that 
 the right value is greater than the left value, the right value will shift to the index just before the previous "left" value. This shift will have to check every value for the array and check to see if it is in the right order (n^2^).
-for the example of the shift in-place merge we have a complexity of O(n^2^ * log(n)).
+for the example of the shift in-place merge we have a complexity of O(n^2^log(n)).
 
 ---
 

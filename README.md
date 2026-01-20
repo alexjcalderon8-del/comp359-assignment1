@@ -6,7 +6,8 @@ COMP 359, ON1 Design and Analysis Algorithms
 
 ## Authors  
 
-- Alexander Calderon   
+- Alexander Calderon
+- Nishant Singh
 
 
 ---
