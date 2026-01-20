@@ -32,6 +32,11 @@ Implement different merge function for Mergesort and compare the difference betw
 
 ### Not-in-place merge
 
+The not in place merge sort or standard version of merge sort, will take an unordered list and sort it recursively.
+The process begins with splitting the array into halves. The split is determined based on if the value is less than the previous value. once, the array is broken down into its subarrays, the merge process begins and the comparisons to find order will be made.
+A preallocated array will help with the process of separating the merged items and maintain the order for the final output. Using a preallocated will increase the space complexity.
+A limitation of this method, is if the system is required to utilize limited memory.
+
 ### In-place merge
 
 The main component behind using the In-place merge is completing the mergesort all within the same array. This means that there is so extra memory dedicated to an empty array.
@@ -61,8 +66,13 @@ located in docs/
 
 ---
 
-## Analysis of results  
+## Analysis of methods
 
+The largest difference from an in-place merge compared to a not in-place merge will be seen through its efficiency. If there are no restrictions in memory or required resources,
+the not in-place merge sort will prove to be more efficient than the in-place merge. Having extra space to work with in the array can help improve time.
+The one take away the in-place merge excels in is the constant space it uses. Since the in-place merge uses constant space, it has the trade off in its efficiency. 
+The in-place merge will take longer time for its execution as all of the actions are completed within the same array. Especially with the shift method, the sorting will take time as it will have to go 
+through all the values of the array to determine its placement in order. 
 
 ---
 
